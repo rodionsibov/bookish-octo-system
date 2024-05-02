@@ -1,8 +1,8 @@
-import {Component, computed, signal} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, computed, effect, signal} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 
-interface Vehicle  {
+interface Vehicle {
   id: number
   name: string
   price: number
@@ -33,4 +33,7 @@ export class AppComponent {
   onQuantitySelected(qty: number) {
     this.quantity.set(qty);
   }
+
+  e = effect(() => console.log(this.selectedVehicle()));
+
 }
