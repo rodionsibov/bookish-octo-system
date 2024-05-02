@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, computed, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 
@@ -27,8 +27,8 @@ export class AppComponent {
   });
 
   vehicles = signal<Vehicle[]>([]);
-  color = signal<any | null>(null);
-  totalPrice = signal<string | null>(null);
+  totalPrice = computed(() => this.selectedVehicle().price * this.quantity());
+  color = computed(() => this.totalPrice() > 50000 ? 'green' : 'blue');
 
   onQuantitySelected(qty: number) {
     this.quantity.set(qty);
